@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: client
+
+server:
+  port: 8081
+
+logging:
+  level:
+    org.springframework: ERROR
+    kz.turebekov: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+    file: "%d %p %c{1.} [%t] %m%n"
+  file:
+    name: client/src/log-files/app.log
+
+
+
+
+
