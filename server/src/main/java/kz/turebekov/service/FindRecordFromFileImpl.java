@@ -1,5 +1,6 @@
 package kz.turebekov.service;
 
+import kz.turebekov.ServerApplication;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -15,12 +16,12 @@ import java.util.stream.Stream;
 @Slf4j
 public class FindRecordFromFileImpl implements FindRecordFromFile{
 
-    @Value("classpath:airport.dat")
-    private Resource resource;
+//    @Value("classpath:airport.dat")
+//    private Resource resource;
 
     @Override
     public String findRecordById(String id) {
-        try (Stream<String> lines = Files.lines(Path.of(resource.getURI()), StandardCharsets.UTF_8)) {
+        try (Stream<String> lines = Files.lines(Path.of(ServerApplication.filePath), StandardCharsets.UTF_8)) {
             return lines.filter(str -> str.startsWith(id)).findFirst().orElse("");
         } catch (IOException ex) {
             log.error("IOException occurred cause {} trace:\n {}", ex.getCause(), ex.toString());
